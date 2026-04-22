@@ -184,7 +184,12 @@ public class ProjectsController {
 
     private void openProjectPage(Project project) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("projectPage.fxml"));
+            java.net.URL url = getClass().getResource("projectPage.fxml");
+            if (url == null) {
+                new Alert(Alert.AlertType.ERROR, "Cannot find projectPage.fxml.\nClass location: " + getClass().getProtectionDomain().getCodeSource().getLocation(), ButtonType.OK).showAndWait();
+                return;
+            }
+            FXMLLoader loader = new FXMLLoader(url);
             javafx.scene.Parent root = loader.load();
             ProjectPageController ctrl = loader.getController();
             ctrl.setProject(project, username, this);
@@ -192,6 +197,7 @@ public class ProjectsController {
             stage.getScene().setRoot(root);
         } catch (Exception e) {
             e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Navigation error:\n" + e.getClass().getSimpleName() + ": " + e.getMessage(), ButtonType.OK).showAndWait();
         }
     }
 
