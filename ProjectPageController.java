@@ -535,7 +535,7 @@ public class ProjectPageController {
     @FXML
     private void handleLogout() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demo/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
             Stage stage = (Stage) projectNameLabel.getScene().getWindow();
             stage.getScene().setRoot(loader.load());
         } catch (Exception e) {
@@ -546,7 +546,7 @@ public class ProjectPageController {
     private void navigateToProjects() {
         try {
             Stage stage = (Stage) projectNameLabel.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demo/projects.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("projects.fxml"));
             javafx.scene.Parent root = loader.load();
             ProjectsController ctrl = loader.getController();
             ctrl.restoreFrom(projectsController);
