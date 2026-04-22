@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.Parent;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -209,6 +211,24 @@ public class ProjectsController {
         val.setStyle("-fx-font-size: 13px; -fx-text-fill: #191919;");
         grid.add(lbl, 0, row);
         grid.add(val, 1, row);
+    }
+    @FXML
+    private void handleGoToTransactions() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("transactionPage.fxml"));
+            Parent root = loader.load();
+
+            TransactionPageController ctrl = loader.getController();
+            ctrl.setContext(null, username, this);
+
+            Stage stage = (Stage) createProjectBtn.getScene().getWindow();
+            stage.getScene().setRoot(root);
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,
+                    "Navigation error:\n" + e.getClass().getSimpleName() + ": " + e.getMessage(),
+                    ButtonType.OK).showAndWait();
+        }
     }
 
     @FXML
