@@ -21,6 +21,7 @@
                        style="-fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: 600;"/>
             </HBox>
             <HBox spacing="12" alignment="CENTER_LEFT"
+                  onMouseClicked="#handleGoToTransactions"
                   style="-fx-padding: 12 16 12 16; -fx-background-radius: 4;">
                 <Label text="Transactions"
                        style="-fx-text-fill: #aaaaaa; -fx-font-size: 15px;"/>
