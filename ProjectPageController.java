@@ -3,12 +3,14 @@ package com.example.demo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
 
 import java.io.File;
 import java.util.List;
@@ -553,6 +555,24 @@ public class ProjectPageController {
             stage.getScene().setRoot(root);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleGoToTransactions() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("transactionPage.fxml"));
+            Parent root = loader.load();
+
+            TransactionPageController controller = loader.getController();
+            controller.setContext(project, username, projectsController);
+
+            Stage stage = (Stage) projectNameLabel.getScene().getWindow();
+            stage.getScene().setRoot(root);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Cannot open Transactions page.").showAndWait();
         }
     }
 
