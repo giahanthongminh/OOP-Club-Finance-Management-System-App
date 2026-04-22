@@ -173,11 +173,12 @@ public class ProjectsController {
         addStatRow(stats, "Budget Pots", String.valueOf(project.getListOfPots().size()), 2);
         addStatRow(stats, "Transactions", String.valueOf(project.getListOfTransactions().size()), 3);
 
-        card.getChildren().addAll(projectName, stats);
+        Button openBtn = new Button("Open Project →");
+        openBtn.setStyle("-fx-background-color: #299D91; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 600; -fx-padding: 8 16 8 16; -fx-background-radius: 8; -fx-cursor: hand;");
+        openBtn.setMaxWidth(Double.MAX_VALUE);
+        openBtn.setOnAction(e -> openProjectPage(project));
 
-        card.setOnMouseClicked(e -> openProjectPage(project));
-        card.setOnMouseEntered(e -> card.setStyle("-fx-background-color: #f0faf9; -fx-background-radius: 12; -fx-padding: 20; -fx-cursor: hand;"));
-        card.setOnMouseExited(e -> card.setStyle("-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-cursor: hand;"));
+        card.getChildren().addAll(projectName, stats, openBtn);
 
         return card;
     }
