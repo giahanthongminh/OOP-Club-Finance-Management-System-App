@@ -78,21 +78,21 @@
                           style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20 24 20 24;">
                         <Label text="Total Balance"
                                style="-fx-font-size: 13px; -fx-text-fill: #888888;"/>
-                        <Label fx:id="totalBalanceLabel" text="$0"
+                        <Label fx:id="totalBalanceLabel" text="\$0"
                                style="-fx-font-size: 26px; -fx-font-weight: 700; -fx-text-fill: #191919;"/>
                     </VBox>
                     <VBox spacing="6" prefWidth="280"
                           style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20 24 20 24;">
                         <Label text="Total Spent"
                                style="-fx-font-size: 13px; -fx-text-fill: #888888;"/>
-                        <Label fx:id="totalSpentLabel" text="$0"
+                        <Label fx:id="totalSpentLabel" text="\$0"
                                style="-fx-font-size: 26px; -fx-font-weight: 700; -fx-text-fill: #191919;"/>
                     </VBox>
                     <VBox spacing="6" prefWidth="280"
                           style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20 24 20 24;">
                         <Label text="Total Remaining"
                                style="-fx-font-size: 13px; -fx-text-fill: #888888;"/>
-                        <Label fx:id="totalRemainingLabel" text="$0"
+                        <Label fx:id="totalRemainingLabel" text="\$0"
                                style="-fx-font-size: 26px; -fx-font-weight: 700; -fx-text-fill: #191919;"/>
                     </VBox>
                 </HBox>
