@@ -23,6 +23,7 @@ public class ProjectPageController {
     @FXML private Label totalSpentLabel;
     @FXML private Label totalRemainingLabel;
     @FXML private Label projectNameLabel;
+    @FXML private Button editMenuBtn;
     @FXML private FlowPane potsGrid;
     @FXML private VBox transactionsContainer;
 
@@ -106,6 +107,19 @@ public class ProjectPageController {
         val.setStyle("-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #191919;");
         grid.add(lbl, 0, row);
         grid.add(val, 1, row);
+    }
+
+    @FXML
+    private void handleEditMenu() {
+        ContextMenu menu = new ContextMenu();
+        MenuItem changeName = new MenuItem("Change Name");
+        changeName.setOnAction(e -> handleChangeName());
+        MenuItem editBudget = new MenuItem("Edit Budget");
+        editBudget.setOnAction(e -> handleEditBudget());
+        MenuItem deleteProject = new MenuItem("Delete Project");
+        deleteProject.setOnAction(e -> handleDeleteProject());
+        menu.getItems().addAll(changeName, editBudget, new SeparatorMenuItem(), deleteProject);
+        menu.show(editMenuBtn, javafx.geometry.Side.BOTTOM, 0, 4);
     }
 
     @FXML

@@ -105,15 +105,8 @@
                 <HBox alignment="CENTER_LEFT" spacing="16">
                     <Label fx:id="projectNameLabel" text="Project"
                            style="-fx-font-size: 22px; -fx-font-weight: 700; -fx-text-fill: #191919;"/>
-                    <MenuButton text="Edit"
-                                style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13px; -fx-padding: 6 14 6 14;">
-                        <items>
-                            <MenuItem text="Change Name" onAction="#handleChangeName"/>
-                            <MenuItem text="Edit Budget" onAction="#handleEditBudget"/>
-                            <SeparatorMenuItem/>
-                            <MenuItem text="Delete Project" onAction="#handleDeleteProject"/>
-                        </items>
-                    </MenuButton>
+                    <Button fx:id="editMenuBtn" text="Edit" onAction="#handleEditMenu"
+                            style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13px; -fx-padding: 6 14 6 14; -fx-cursor: hand;"/>
                     <Button text="&#8592; Back to Projects" onAction="#handleGoToProjects"
                             style="-fx-background-color: transparent; -fx-border-color: #cccccc; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13px; -fx-padding: 6 14 6 14; -fx-cursor: hand;"/>
                 </HBox>
