@@ -23,6 +23,7 @@ public class ProjectPageController {
     @FXML private Label totalSpentLabel;
     @FXML private Label totalRemainingLabel;
     @FXML private Label projectNameLabel;
+    @FXML private Label sidebarProjectNameLabel;
     @FXML private Button editMenuBtn;
     @FXML private FlowPane potsGrid;
     @FXML private VBox transactionsContainer;
@@ -38,6 +39,7 @@ public class ProjectPageController {
         if (usernameLabel != null) usernameLabel.setText(username);
         if (sidebarUsername != null) sidebarUsername.setText(username);
         if (projectNameLabel != null) projectNameLabel.setText(project.getProjectName());
+        if (sidebarProjectNameLabel != null) sidebarProjectNameLabel.setText(project.getProjectName());
         refreshPage();
     }
 
@@ -496,6 +498,7 @@ public class ProjectPageController {
             if (!name.isEmpty()) {
                 project.setProjectName(name);
                 projectNameLabel.setText(name);
+                if (sidebarProjectNameLabel != null) sidebarProjectNameLabel.setText(name);
                 projectsController.refreshProjectCard(project);
                 popup.close();
             }
