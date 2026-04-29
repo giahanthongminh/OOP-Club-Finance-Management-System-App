@@ -28,10 +28,7 @@
             </HBox>
         </VBox>
 
-        <Region prefHeight="1"/>
-        <VBox.vgrow>
-            <javafx.scene.layout.Priority fx:constant="ALWAYS"/>
-        </VBox.vgrow>
+        <Region VBox.vgrow="ALWAYS"/>
 
         <HBox spacing="12" alignment="CENTER_LEFT"
               onMouseClicked="#handleViewProfile"
