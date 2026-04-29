@@ -338,7 +338,12 @@ public class ProjectPageController {
             if (!isF) {
                 String txt = dateField.getText().trim();
                 if (txt.matches("\\d{4}/\\d{2}/\\d{2}")) {
-                    dateField.setText(txt.replace("/", ""));
+                    try {
+                        java.time.LocalDate d = java.time.LocalDate.parse(txt,
+                                java.time.format.DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+                        dateField.setText(d.format(
+                                java.time.format.DateTimeFormatter.ofPattern("MMM dd yyyy")));
+                    } catch (Exception ignored) {}
                 }
             }
         });
