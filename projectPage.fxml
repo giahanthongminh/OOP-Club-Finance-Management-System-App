@@ -23,9 +23,9 @@
 
             <!-- Sub-item: current project name, indented under Projects -->
             <HBox spacing="12" alignment="CENTER_LEFT"
-                  style="-fx-padding: 8 16 8 32; -fx-background-radius: 4;">
+                  style="-fx-background-color: #2a2a2a; -fx-padding: 12 16 12 32; -fx-background-radius: 4;">
                 <Label fx:id="sidebarProjectNameLabel" text=""
-                       style="-fx-text-fill: #aaaaaa; -fx-font-size: 13px;"/>
+                       style="-fx-text-fill: #aaaaaa; -fx-font-size: 15px;"/>
             </HBox>
 
             <HBox spacing="12" alignment="CENTER_LEFT"
