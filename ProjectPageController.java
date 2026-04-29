@@ -70,7 +70,7 @@ public class ProjectPageController {
         card.setStyle("-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 2);");
 
         // Header row: pot name + edit/delete buttons
-        HBox header = new HBox();
+        HBox header = new HBox(8);
         header.setAlignment(Pos.CENTER_LEFT);
         Label nameLabel = new Label(pot.getPotName());
         nameLabel.setStyle("-fx-font-size: 15px; -fx-font-weight: 700; -fx-text-fill: #191919;");
@@ -90,7 +90,7 @@ public class ProjectPageController {
         // Stats grid
         GridPane stats = new GridPane();
         stats.setHgap(24);
-        stats.setVgap(6);
+        stats.setVgap(10);
 
         double pct = pot.getPercentAllocated(project.getTotalBudget());
         addPotStatRow(stats, "Amount Allocated", String.format("$%.2f", pot.getAllocatedAmount()), 0);
@@ -253,7 +253,7 @@ public class ProjectPageController {
         amountLabel.setStyle("-fx-font-size: 15px; -fx-font-weight: 700; -fx-text-fill: " + (isExpense ? "#e53935" : "#299D91") + "; -fx-min-width: 120;");
 
         // Info column
-        VBox info = new VBox(3);
+        VBox info = new VBox(6);
         Label dateLabel = new Label(t.getDate());
         dateLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #888888;");
         Label personLabel = new Label(t.getTransactionName());
