@@ -3,6 +3,8 @@ package com.example.demo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -70,10 +72,31 @@ public class TransactionPageController {
 
     @FXML
     private void handleLogout() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
-            Parent root = loader.load();
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to log out?", ButtonType.YES, ButtonType.NO);
+        confirm.setTitle("Logout");
+        confirm.setHeaderText(null);
+        confirm.showAndWait().ifPresent(btn -> {
+            if (btn == ButtonType.YES) {
+                UserSession.clear();
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+                    Stage stage = (Stage) usernameLabel.getScene().getWindow();
+                    stage.getScene().setRoot(loader.load());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
+    @FXML
+    private void handleViewProfile() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("profilePage.fxml"));
+            Parent root = loader.load();
+            ProfileController ctrl = loader.getController();
+            ctrl.setContext(username, projectsController);
             Stage stage = (Stage) usernameLabel.getScene().getWindow();
             stage.getScene().setRoot(root);
         } catch (Exception e) {

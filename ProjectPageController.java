@@ -79,7 +79,7 @@ public class ProjectPageController {
         editBtn.setOnAction(e -> handleEditPot(pot));
 
         Button deleteBtn = new Button("Delete");
-        deleteBtn.setStyle("-fx-background-color: transparent; -fx-text-fill: #e53935; -fx-font-size: 12px; -fx-cursor: hand; -fx-padding: 0;");
+        deleteBtn.setStyle("-fx-background-color: transparent; -fx-text-fill: #e53935; -fx-font-size: 12px; -fx-cursor: hand; -fx-padding: 0 0 0 8;");
         deleteBtn.setOnAction(e -> handleDeletePot(pot));
 
         header.getChildren().addAll(nameLabel, spacer, editBtn, deleteBtn);
@@ -160,6 +160,13 @@ public class ProjectPageController {
             String amtText = amountField.getText().trim();
             if (name.isEmpty() || amtText.isEmpty()) {
                 errorLabel.setText("Please fill in all fields.");
+                return;
+            }
+            // Check for duplicate pot name
+            boolean duplicate = project.getListOfPots().stream()
+                    .anyMatch(p -> p.getPotName().equalsIgnoreCase(name) && p != existingPot);
+            if (duplicate) {
+                errorLabel.setText("This name is already in use.");
                 return;
             }
             double amount;
@@ -251,8 +258,8 @@ public class ProjectPageController {
         editBtn.setStyle("-fx-background-color: transparent; -fx-text-fill: #299D91; -fx-font-size: 12px; -fx-cursor: hand;");
         editBtn.setOnAction(e -> showTransactionDialog(t));
 
-        Button deleteBtn = new Button("✕");
-        deleteBtn.setStyle("-fx-background-color: transparent; -fx-text-fill: #e53935; -fx-font-size: 13px; -fx-cursor: hand;");
+        Button deleteBtn = new Button("Delete");
+        deleteBtn.setStyle("-fx-background-color: transparent; -fx-text-fill: #e53935; -fx-font-size: 12px; -fx-cursor: hand;");
         deleteBtn.setOnAction(e -> handleDeleteTransaction(t));
 
         row.getChildren().addAll(amountLabel, info, potBadge, spacer, editBtn, deleteBtn);
@@ -327,6 +334,14 @@ public class ProjectPageController {
         TextField dateField = new TextField(existingTx != null ? existingTx.getDate() : "");
         dateField.setPromptText("YYYY/MM/DD");
         styleTextField(dateField);
+        dateField.focusedProperty().addListener((obs, wasF, isF) -> {
+            if (!isF) {
+                String txt = dateField.getText().trim();
+                if (txt.matches("\\d{4}/\\d{2}/\\d{2}")) {
+                    dateField.setText(txt.replace("/", ""));
+                }
+            }
+        });
 
         // Person in charge
         Label personLabel = new Label("Person in charge");
@@ -536,10 +551,33 @@ public class ProjectPageController {
 
     @FXML
     private void handleLogout() {
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to log out?", ButtonType.YES, ButtonType.NO);
+        confirm.setTitle("Logout");
+        confirm.setHeaderText(null);
+        confirm.showAndWait().ifPresent(btn -> {
+            if (btn == ButtonType.YES) {
+                UserSession.clear();
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+                    Stage stage = (Stage) projectNameLabel.getScene().getWindow();
+                    stage.getScene().setRoot(loader.load());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @FXML
+    private void handleViewProfile() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("profilePage.fxml"));
+            Parent root = loader.load();
+            ProfileController ctrl = loader.getController();
+            ctrl.setContext(username, projectsController);
             Stage stage = (Stage) projectNameLabel.getScene().getWindow();
-            stage.getScene().setRoot(loader.load());
+            stage.getScene().setRoot(root);
         } catch (Exception e) {
             e.printStackTrace();
         }

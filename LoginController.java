@@ -24,6 +24,8 @@ public class LoginController {
             return;
         }
 
+        UserSession.set(username, password);
+
         try {
             FXMLLoader loader = new FXMLLoader(
                     LoginController.class.getResource("projects.fxml")
