@@ -169,7 +169,7 @@ public class ProjectsController {
 
         GridPane stats = new GridPane();
         stats.setHgap(40);
-        stats.setVgap(6);
+        stats.setVgap(10);
         addStatRow(stats, "Total Balance", String.format("$%.2f", project.getTotalBudget()), 0);
         addStatRow(stats, "Total Spent", String.format("$%.2f", project.getTotalSpent()), 1);
         addStatRow(stats, "Budget Pots", String.valueOf(project.getListOfPots().size()), 2);

@@ -131,7 +131,7 @@
                         <Button text="+ Record Transaction" onAction="#handleCreateTransaction"
                                 style="-fx-background-color: #299D91; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 600; -fx-padding: 8 16 8 16; -fx-background-radius: 8;"/>
                     </HBox>
-                    <VBox fx:id="transactionsContainer" spacing="0"
+                    <VBox fx:id="transactionsContainer" spacing="10"
                           style="-fx-background-color: white; -fx-background-radius: 12;"/>
                 </VBox>
 
