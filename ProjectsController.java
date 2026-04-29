@@ -233,10 +233,33 @@ public class ProjectsController {
 
     @FXML
     private void handleLogout() {
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to log out?", ButtonType.YES, ButtonType.NO);
+        confirm.setTitle("Logout");
+        confirm.setHeaderText(null);
+        confirm.showAndWait().ifPresent(btn -> {
+            if (btn == ButtonType.YES) {
+                UserSession.clear();
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+                    Stage stage = (Stage) createProjectBtn.getScene().getWindow();
+                    stage.getScene().setRoot(loader.load());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @FXML
+    private void handleViewProfile() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("profilePage.fxml"));
+            Parent root = loader.load();
+            ProfileController ctrl = loader.getController();
+            ctrl.setContext(username, this);
             Stage stage = (Stage) createProjectBtn.getScene().getWindow();
-            stage.getScene().setRoot(loader.load());
+            stage.getScene().setRoot(root);
         } catch (Exception e) {
             e.printStackTrace();
         }

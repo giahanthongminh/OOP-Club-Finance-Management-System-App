@@ -16,8 +16,15 @@
         <VBox spacing="4" style="-fx-padding: 40 0 0 0;">
             <HBox spacing="12" alignment="CENTER_LEFT"
                   onMouseClicked="#handleGoToProjects"
-                  style="-fx-padding: 12 16 12 16; -fx-background-radius: 4; -fx-cursor: hand;">
+                  style="-fx-background-color: #299D91; -fx-padding: 12 16 12 16; -fx-background-radius: 4; -fx-cursor: hand;">
                 <Label text="Projects"
+                       style="-fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: 600;"/>
+            </HBox>
+
+            <!-- Sub-item: current project name, indented under Projects -->
+            <HBox spacing="12" alignment="CENTER_LEFT"
+                  style="-fx-background-color: #2a2a2a; -fx-padding: 12 16 12 32; -fx-background-radius: 4;">
+                <Label fx:id="sidebarProjectNameLabel" text=""
                        style="-fx-text-fill: #aaaaaa; -fx-font-size: 15px;"/>
             </HBox>
 
@@ -27,34 +34,22 @@
                 <Label text="Transactions"
                        style="-fx-text-fill: #aaaaaa; -fx-font-size: 15px;"/>
             </HBox>
-
-            <HBox spacing="12" alignment="CENTER_LEFT"
-                  style="-fx-background-color: #299D91; -fx-padding: 12 16 12 16; -fx-background-radius: 4;">
-                <Label text="Project Detail"
-                       style="-fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: 600;"/>
-            </HBox>
         </VBox>
 
 
 
         <Region VBox.vgrow="ALWAYS"/>
 
-        <VBox spacing="16">
-            <HBox spacing="12" alignment="CENTER_LEFT"
-                  style="-fx-background-color: #2a2a2a; -fx-padding: 12 16 12 16; -fx-background-radius: 4; -fx-cursor: hand;">
-                <Label text="Logout" onMouseClicked="#handleLogout"
-                       style="-fx-text-fill: white; -fx-font-size: 15px;"/>
-            </HBox>
-            <HBox spacing="12" alignment="CENTER_LEFT"
-                  style="-fx-border-color: #333333; -fx-border-width: 1 0 0 0; -fx-padding: 20 0 0 0;">
-                <VBox spacing="2">
-                    <Label fx:id="sidebarUsername" text="User"
-                           style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: 600;"/>
-                    <Label text="View profile"
-                           style="-fx-text-fill: #666666; -fx-font-size: 12px;"/>
-                </VBox>
-            </HBox>
-        </VBox>
+        <HBox spacing="12" alignment="CENTER_LEFT"
+              onMouseClicked="#handleViewProfile"
+              style="-fx-border-color: #333333; -fx-border-width: 1 0 0 0; -fx-padding: 20 0 0 0; -fx-cursor: hand;">
+            <VBox spacing="2">
+                <Label fx:id="sidebarUsername" text="User"
+                       style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: 600;"/>
+                <Label text="View profile"
+                       style="-fx-text-fill: #666666; -fx-font-size: 12px;"/>
+            </VBox>
+        </HBox>
     </VBox>
 
     <!-- MAIN CONTENT -->
@@ -111,15 +106,8 @@
                 <HBox alignment="CENTER_LEFT" spacing="16">
                     <Label fx:id="projectNameLabel" text="Project"
                            style="-fx-font-size: 22px; -fx-font-weight: 700; -fx-text-fill: #191919;"/>
-                    <MenuButton text="Edit ▾"
-                                style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13px; -fx-padding: 6 14 6 14;">
-                        <items>
-                            <MenuItem text="Change Name" onAction="#handleChangeName"/>
-                            <MenuItem text="Edit Budget" onAction="#handleEditBudget"/>
-                            <SeparatorMenuItem/>
-                            <MenuItem text="Delete Project" onAction="#handleDeleteProject"/>
-                        </items>
-                    </MenuButton>
+                    <Button fx:id="editMenuBtn" text="Edit" onAction="#handleEditMenu"
+                            style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13px; -fx-padding: 6 14 6 14; -fx-cursor: hand;"/>
                     <Button text="&#8592; Back to Projects" onAction="#handleGoToProjects"
                             style="-fx-background-color: transparent; -fx-border-color: #cccccc; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13px; -fx-padding: 6 14 6 14; -fx-cursor: hand;"/>
                 </HBox>
